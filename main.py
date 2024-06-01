@@ -2,8 +2,6 @@ from builtins import *
 from windows import MainWindow as mw
 
 
-
-
 if __name__ == '__main__':
     mainWindow = mw()
 

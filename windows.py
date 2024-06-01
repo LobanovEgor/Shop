@@ -110,23 +110,26 @@ class MainWindow(Tk, Singleton):
         self.selected_item += f';{weight}'
         self.cart.insert(1, self.selected_item)
 
-    def payment(self):
-        def check_sum():
+    def payment(self, sum, balance):
+        def check_sum(sum=sum, balance=balance):
             balance_sum = 0
             for i in self.balance:
                 balance_sum += i
             if self.sum > balance_sum:
                 messagebox.showinfo('Не хватает денег!', 'Уберите товары из корзины, чтобы продолжить оплату!')
-            elif self.sum == 0:
-                messagebox.showinfo('В смысле не купили ничего..', 'Добавьте хоть что-то,\n'
-                                                                   'пожалуйста...')
+                return None
+            elif sum == 0:
+                messagebox.showinfo('В смысле не купили ничего..', 'Добавьте хоть что-то,\nпожалуйста...')
+                return None
             elif 'Пиво 50 руб' in self.cart.get(0, END) and self.disabled.get() == 0:
                 messagebox.showinfo('18+', 'Не продаём несовершеннолетним')
+                return None
             else:
                 self.payment_window()
 
         self.payment_btn = ttk.Button(text='К оплате', command=check_sum)
         self.payment_btn.grid(row=3, column=4, sticky=NSEW)
+        return check_sum()
 
     def payment_window(self):
         def pay():
@@ -175,6 +178,6 @@ class MainWindow(Tk, Singleton):
         payment_window.entry_payment.grid(row=1, column=1, columnspan=1, sticky=NSEW)
 
         payment_window.pay_btn = ttk.Button(text='Оплатить', command=pay)
-        payment_window.pay_btn.grid(row=2, column=2, rowspan = 2)
+        payment_window.pay_btn.grid(row=2, column=2, rowspan=2)
 
         payment_window.mainloop()
