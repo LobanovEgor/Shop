@@ -1,9 +1,9 @@
 from builtins import *
-from windows import MainWindow as mw
+from windows import MainWindow
 
 
 if __name__ == '__main__':
-    mainWindow = mw()
+    mainWindow = MainWindow()
 
     mainWindow.title('В магазине')
     mainWindow.geometry('1280x720')

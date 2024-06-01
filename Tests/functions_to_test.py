@@ -1,0 +1,26 @@
+def pay_func(total_sum, balance, user_input):
+    entry = user_input
+    if entry == '':
+        return 'Неправильный ввод', 'Введите оплату'
+    else:
+        entry = entry.split(';')
+        entry = list(map(int, entry))
+        if sum(entry) != total_sum:
+            return 'Неправильный ввод!', 'Сумма оплаты не соответствует общей сумме'
+        else:
+            for i in range(len(entry)):
+                balance[i] -= entry[i]
+            return f'Успешная оплата! Осталось - {balance}'
+
+def check_sum_func(balance, sum, disabled, cart):
+    balance_sum = 0
+    for i in balance:
+        balance_sum += i
+        if sum > balance_sum:
+            return False
+        elif sum == 0:
+            return False
+        elif 'Пиво 50 руб' in cart and disabled == False:
+            return False
+        else:
+            return True

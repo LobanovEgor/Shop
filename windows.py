@@ -110,8 +110,8 @@ class MainWindow(Tk, Singleton):
         self.selected_item += f';{weight}'
         self.cart.insert(1, self.selected_item)
 
-    def payment(self, sum, balance):
-        def check_sum(sum=sum, balance=balance):
+    def payment(self):
+        def check_sum():
             balance_sum = 0
             for i in self.balance:
                 balance_sum += i
@@ -129,7 +129,6 @@ class MainWindow(Tk, Singleton):
 
         self.payment_btn = ttk.Button(text='К оплате', command=check_sum)
         self.payment_btn.grid(row=3, column=4, sticky=NSEW)
-        return check_sum()
 
     def payment_window(self):
         def pay():
@@ -147,7 +146,6 @@ class MainWindow(Tk, Singleton):
                         self.balance[i] -= entry[i]
                         print(f'Успешная оплата! Осталось - {self.balance}')
                     payment_window.destroy()
-
 
         self.destroy()
 
@@ -171,7 +169,8 @@ class MainWindow(Tk, Singleton):
             text=f'Введите ниже сколько вы хотите оплатить картой, наличными, бонусами\n'
                  f'в формате ***;***;***\n'
                  f'где вместо * сначала кол-во денег с карты, потом с налички, а потом\n'
-                 f'бонусов, ваш баланс: {self.balance[0]} руб на карте, {self.balance[1]} руб наличными, {self.balance[2]} бонусами', font=('Arial', 15))
+                 f'бонусов, ваш баланс: {self.balance[0]} руб на карте, {self.balance[1]} руб наличными, {self.balance[2]} бонусами',
+            font=('Arial', 15))
         payment_window.text_payment.grid(row=0, column=0, columnspan=2, sticky=NW)
 
         payment_window.entry_payment = ttk.Entry(width=20)
