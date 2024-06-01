@@ -24,3 +24,7 @@ def check_sum_func(balance, sum, disabled, cart):
             return False
         else:
             return True
+def getWeight(weight, fruit_cost):
+    sum = fruit_cost * weight
+    sum_to_pay = f'{sum} сумма товаров в корзине'
+    return sum_to_pay

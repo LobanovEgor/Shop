@@ -39,3 +39,39 @@ def test_check_balance_default():
     balance = [50, 30, 20]
     sum = 30
     assert check_sum_func(balance, sum, False, []) == True
+
+
+# Тест проверяет случай, когда вес и стоимость фруктов положительные
+def test_getWeight_positive_values():
+    weight = 3
+    fruit_cost = 10
+    expected_output = "30 сумма товаров в корзине"
+
+    assert getWeight(weight, fruit_cost) == expected_output
+
+
+# Тест проверяет случай, когда вес равен 0
+def test_getWeight_zero_weight():
+    weight = 0
+    fruit_cost = 10
+    expected_output = "0 сумма товаров в корзине"
+
+    assert getWeight(weight, fruit_cost) == expected_output
+
+
+# Тест проверяет случай, когда стоимость фруктов равна 0
+def test_getWeight_zero_fruit_cost():
+    weight = 5
+    fruit_cost = 0
+    expected_output = "0 сумма товаров в корзине"
+
+    assert getWeight(weight, fruit_cost) == expected_output
+
+
+# Тест проверяет случай, когда вес и стоимость фруктов отрицательные
+def test_getWeight_negative_values():
+    weight = -2
+    fruit_cost = 10
+    expected_output = "-20 сумма товаров в корзине"
+
+    assert getWeight(weight, fruit_cost) == expected_output
