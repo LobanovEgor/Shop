@@ -25,6 +25,8 @@ def check_sum_func(balance, sum, disabled, cart):
         else:
             return True
 def getWeight(weight, fruit_cost):
+    if weight < 0:
+        return 'Вес не может быть меньше нуля!'
     sum = fruit_cost * weight
     sum_to_pay = f'{sum} сумма товаров в корзине'
     return sum_to_pay

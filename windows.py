@@ -102,13 +102,16 @@ class MainWindow(Tk, Singleton):
 
     def getWeight(self):
         weight = self.entry_weight.get()
-        self.add_btn.config(state='normal')
-        self.sum += self.fruit_cost[self.fruit_name.index(self.selected_item)] * float(weight)
-        self.sum_to_pay = f'{self.sum} сумма товаров в корзине'
-        self.cart.delete(0)
-        self.cart.insert(0, self.sum_to_pay)
-        self.selected_item += f';{weight}'
-        self.cart.insert(1, self.selected_item)
+        if float(weight) <= 0:
+            messagebox.showinfo('Неправильный ввод', 'Вес не может быть меньше или равен нулю')
+        else:
+            self.add_btn.config(state='normal')
+            self.sum += self.fruit_cost[self.fruit_name.index(self.selected_item)] * float(weight)
+            self.sum_to_pay = f'{self.sum} сумма товаров в корзине'
+            self.cart.delete(0)
+            self.cart.insert(0, self.sum_to_pay)
+            self.selected_item += f';{weight}'
+            self.cart.insert(1, self.selected_item)
 
     def payment(self):
         def check_sum():
