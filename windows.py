@@ -73,9 +73,9 @@ class MainWindow(Tk, Singleton):
             self.add_btn.config(state='disabled')
 
             self.entry_weight = ttk.Entry(text='Введите вес')
-            self.entry_weight.grid(row=2, column=2)
+            self.entry_weight.grid(row=0, column=2)
             self.weight_btn = ttk.Button(text='Ввод веса', command=self.getWeight)
-            self.weight_btn.grid(row=3, column=2)
+            self.weight_btn.grid(row=1, column=2)
 
     def del_selected_items(self):
         if self.cart.get(self.cart.curselection()) != self.sum_to_pay:
